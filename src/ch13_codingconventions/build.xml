@@ -1,0 +1,57 @@
+<project name="CodingConventions" default="compile" basedir="..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="javac1.6" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="../src" />
+	<property name="build.dir" value="../bin" />
+	<property name="lib.dir" value="../lib" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES -->
+	<target name="compile">
+
+		<echo message="compiling ${source.dir}" />
+        <mkdir dir="${build.dir}" />
+        	
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch13_codingconventions.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>	
+	
+	
+	<target name="TestReturnInCatch" depends="compile">
+		<execute AntTarget="TestReturnInCatch" />
+	</target>
+	
+</project>

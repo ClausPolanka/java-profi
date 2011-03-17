@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="win7-viao-nb" name="ch06_applikationsbausteine.RangeCheckUtilsTest" tests="6" time="0.13" timestamp="2011-03-17T14:55:34">
+  <properties>
+    <property name="java.vendor" value="Sun Microsystems Inc." />
+    <property name="lib.dir" value="lib" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Server Compiler" />
+    <property name="os.name" value="Windows 7" />
+    <property name="sun.boot.class.path" value="C:\Dev\Programs\Java\SDK\JDK\jre\lib\resources.jar;C:\Dev\Programs\Java\SDK\JDK\jre\lib\rt.jar;C:\Dev\Programs\Java\SDK\JDK\jre\lib\sunrsasign.jar;C:\Dev\Programs\Java\SDK\JDK\jre\lib\jsse.jar;C:\Dev\Programs\Java\SDK\JDK\jre\lib\jce.jar;C:\Dev\Programs\Java\SDK\JDK\jre\lib\charsets.jar;C:\Dev\Programs\Java\SDK\JDK\jre\classes" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="ant.home" value="C:\Dev\Programs\Ant\1.8.1" />
+    <property name="java.runtime.version" value="1.6.0_21-b07" />
+    <property name="testsource.dir.present" value="true" />
+    <property name="release.dir" value="release" />
+    <property name="user.name" value="Sageniuz" />
+    <property name="build.dir" value="bin" />
+    <property name="user.language" value="de" />
+    <property name="byName" value="lib/checkstyle-5.0/contrib/checkstyle-noframes.xsl" />
+    <property name="sun.boot.library.path" value="C:\Dev\Programs\Java\SDK\JDK\jre\bin" />
+    <property name="ant.project.default-target" value="release" />
+    <property name="ant.project.name" value="Example" />
+    <property name="java.version" value="1.6.0_21" />
+    <property name="user.timezone" value="" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="java.endorsed.dirs" value="C:\Dev\Programs\Java\SDK\JDK\jre\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="cs-lib.dir" value="lib/checkstyle-5.0" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="ant.file.type.Example" value="file" />
+    <property name="java.class.version" value="50.0" />
+    <property name="user.country" value="AT" />
+    <property name="java.home" value="C:\Dev\Programs\Java\SDK\JDK\jre" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="C:\Dev\Src\Workspaces\IntelliJ\java-profi\build.xml" />
+    <property name="os.version" value="6.1" />
+    <property name="byErrorCount" value="lib/checkstyle-5.0/contrib/checkstyle-noframes-sorted.xsl" />
+    <property name="testsource.dir" value="test" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="17.0-b17" />
+    <property name="report.dir" value="generated-reports" />
+    <property name="user.variant" value="" />
+    <property name="ant.library.dir" value="C:\Dev\Programs\Ant\1.8.1\lib" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="user.home" value="C:\Users\Sageniuz" />
+    <property name="java.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="java.library.path" value="C:\Dev\Programs\Java\SDK\JDK\jre\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Haskell\bin;C:\Dev\Programs\Haskell\lib\extralibs\bin;C:\Dev\Programs\Haskell\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Dev\Programs\Subversion\Slik\bin\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\WinMerge;C:\Dev\Programs\Git\cmd;C:\Dev\Programs\TortoiseSVN\bin;C:\Dev\Programs\e-texteditor\cmd;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Users\Sageniuz\AppData\Roaming\cabal\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Haskell\bin;C:\Dev\Programs\Haskell\lib\extralibs\bin;C:\Dev\Programs\Haskell\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\Program Files (x86)\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files (x86)\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Dev\Programs\Subversion\Slik\bin\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\WinMerge;C:\Dev\Programs\Git\cmd;C:\Dev\Programs\TortoiseSVN\bin;C:\Dev\Programs\e-texteditor\cmd;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Dev\Programs\Java\SDK\JDK\bin;C:\Dev\Programs\Maven\3.0.2\bin;C:\Dev\Programs\Eclipse\Helios\jee;C:\Dev\Programs\Putty;C:\Dev\Programs\Ant\1.8.1\bin;c:\Dev\Programs\Tomcat\7.0.8\bin;C:\Dev\Src\Libs\ApacheCXF\2.2.10\bin;C:\Dev\Src\scripts;C:\Dev\Programs\Notepad2;" />
+    <property name="java.vendor.url" value="http://java.sun.com/" />
+    <property name="java.vm.vendor" value="Sun Microsystems Inc." />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="java.class.path" value="C:\Dev\Src\Workspaces\IntelliJ\java-profi\bin;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\args\args-1.0.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\cglib-2.2.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\checkstyle-5.0\antlr.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\checkstyle-5.0\checkstyle-5.0.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\checkstyle-5.0\checkstyle-all-5.0.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\checkstyle-5.0\commons-beanutils-core.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\checkstyle-5.0\commons-cli-1.1.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\checkstyle-5.0\commons-logging.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\checkstyle-5.0\google-collect-snapshot-20090211.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\cobertura-1.9.4.1\cobertura.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\cobertura-1.9.4.1\lib\asm-3.0.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\cobertura-1.9.4.1\lib\asm-tree-3.0.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\cobertura-1.9.4.1\lib\jakarta-oro-2.0.8.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\cobertura-1.9.4.1\lib\log4j-1.2.9.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\commons-cli-1.2\commons-cli-1.2-javadoc.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\commons-cli-1.2\commons-cli-1.2-sources.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\commons-cli-1.2\commons-cli-1.2.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\commons-lang\commons-lang-2.4-javadoc.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\commons-lang\commons-lang-2.4-sources.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\commons-lang\commons-lang-2.4.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\commons-validator-1.3.1\commons-validator-1.3.1.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\easymock-3.0\easymock-3.0-javadoc.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\easymock-3.0\easymock-3.0-samples.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\easymock-3.0\easymock-3.0-sources.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\easymock-3.0\easymock-3.0-tests.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\easymock-3.0\easymock-3.0.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\hamcrest-all-1.2.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\junit\junit.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\junit\junit4.7\junit-4.7-src.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\junit\junit4.7\junit-4.7.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\junit\junit4.7\junit-dep-4.7.jar;C:\Dev\Src\Workspaces\IntelliJ\java-profi\lib\log4j-1.2.6.jar;C:\Dev\Programs\Ant\1.8.1\lib\ant-launcher.jar;C:\Dev\Programs\Ant\1.8.1\lib\ant.jar;C:\Dev\Programs\Ant\1.8.1\lib\ant-junit.jar" />
+    <property name="ant.version" value="Apache Ant version 1.8.1 compiled on April 30 2010" />
+    <property name="cs-report.dir" value="generated-reports/checkstyle" />
+    <property name="appname" value="AntTestProject" />
+    <property name="mainclass" value="ui.AntTestProject" />
+    <property name="compiler" value="javac1.6" />
+    <property name="ant.file.Example" value="C:\Dev\Src\Workspaces\IntelliJ\java-profi\build.xml" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.vm.specification.version" value="1.0" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="Service Pack 1" />
+    <property name="java.io.tmpdir" value="C:\Users\Sageniuz\AppData\Local\Temp\" />
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="C:\Dev\Programs\Java\SDK\JDK\jre\lib\ext;C:\Windows\Sun\Java\lib\ext" />
+    <property name="user.dir" value="C:\Dev\Src\Workspaces\IntelliJ\java-profi" />
+    <property name="line.separator" value="
+" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="basedir" value="C:\Dev\Src\Workspaces\IntelliJ\java-profi" />
+    <property name="ant.java.version" value="1.6" />
+    <property name="ant.core.lib" value="C:\Dev\Programs\Ant\1.8.1\lib\ant.jar" />
+    <property name="source" value="1.6" />
+    <property name="file.encoding" value="Cp1252" />
+    <property name="source.dir" value="src" />
+    <property name="java.specification.version" value="1.6" />
+    <property name="ant.project.invoked-targets" value="release" />
+  </properties>
+  <testcase classname="ch06_applikationsbausteine.RangeCheckUtilsTest" name="testValueInRange" time="0.0050" />
+  <testcase classname="ch06_applikationsbausteine.RangeCheckUtilsTest" name="testValueInRangeDouble" time="0.0" />
+  <testcase classname="ch06_applikationsbausteine.RangeCheckUtilsTest" name="testValueValid" time="0.0" />
+  <testcase classname="ch06_applikationsbausteine.RangeCheckUtilsTest" name="testValueValidDouble" time="0.065" />
+  <testcase classname="ch06_applikationsbausteine.RangeCheckUtilsTest" name="testValueInRangeComparable" time="0.0" />
+  <testcase classname="ch06_applikationsbausteine.RangeCheckUtilsTest" name="testValueValidComparable" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

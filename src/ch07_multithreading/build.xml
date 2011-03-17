@@ -1,0 +1,144 @@
+<project name="MultiThreading" default="compile" basedir="../..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="modern" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES -->
+	<target name="compile">
+
+		<echo message="compiling ${source.dir}" />
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch07_multithreading.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>
+
+	
+	
+	<target name="ThreadExample" depends="compile">
+		<execute AntTarget="ThreadExample" />
+	</target>
+
+	<target name="ObserverWithSynchronizedExample" depends="compile">
+		<execute AntTarget="ObserverWithSynchronizedExample" />
+	</target>
+	
+	<target name="ProducerConsumerSynchronisationExample" depends="compile">
+		<execute AntTarget="ProducerConsumerSynchronisationExample" />
+	</target>
+		
+	<target name="ProducerConsumerSynchronisationExampleFasterProducder" depends="compile">
+		<execute AntTarget="ProducerConsumerSynchronisationExample2" />
+	</target>
+			
+	<target name="ProducerConsumerExample" depends="compile">
+		<execute AntTarget="ProducerConsumerExample" />
+	</target>	
+
+	<target name="ProducerMultiConsumerWrong1Example" depends="compile">
+		<execute AntTarget="ProducerMultiConsumerWrong1Example" />
+	</target>	
+
+	<target name="ProducerMultiConsumerWrong2Example" depends="compile">
+		<execute AntTarget="ProducerMultiConsumerWrong2Example" />
+	</target>	
+
+	<target name="ProducerMultiConsumerExample" depends="compile">
+		<execute AntTarget="ProducerMultiConsumerExample" />
+	</target>	
+
+	<target name="ProducerMultiConsumerSizedExample" depends="compile">
+		<execute AntTarget="ProducerMultiConsumerSizedExample" />
+	</target>
+	
+	<target name="ProducerMultiConsumerSizedExample2" depends="compile">
+		<execute AntTarget="ProducerMultiConsumerSizedExample2" />
+	</target>
+	
+	<target name="ProducerMultiConsumerSizedExample3" depends="compile">
+		<execute AntTarget="ProducerMultiConsumerSizedExample3" />
+	</target>
+	
+	<target name="ProducerJoinExample" depends="compile">
+		<execute AntTarget="ProducerJoinExample" />
+	</target>		
+	
+	<target name="IllegalMonitorStateExample" depends="compile">
+		<execute AntTarget="IllegalMonitorStateExample" />
+	</target>		
+	
+	<target name="ExceptionInThreadsExample" depends="compile">
+		<execute AntTarget="ExceptionInThreadsExample" />
+	</target>	
+	
+	<target name="LoggingUncaughtExceptionHandler" depends="compile">
+		<execute AntTarget="LoggingUncaughtExceptionHandler" />
+	</target>		
+		
+	<target name="TimerTaskExample" depends="compile">
+		<execute AntTarget="TimerTaskExample" />
+	</target>
+	
+	<target name="TimerTaskPeriodicExample" depends="compile">
+		<execute AntTarget="TimerTaskPeriodicExample" />
+	</target>
+	
+	
+	<target name="ProducerConsumerBlockingQueueExample3" depends="compile">
+		<execute AntTarget="ProducerConsumerBlockingQueueExample3" />
+	</target>
+
+	
+	
+	<target name="FutureExampleWithRunnableAndResult" depends="compile">
+		<execute AntTarget="FutureExampleWithRunnableAndResult" />
+	</target>
+
+	<target name="ExecutorServiceExample" depends="compile">
+		<execute AntTarget="ExecutorServiceExample" />
+	</target>
+
+	<target name="ScheduledExecutorExample" depends="compile">
+		<execute AntTarget="ScheduledExecutorExample" />
+	</target>
+
+	<target name="ScheduledExecutorServiceExample" depends="compile">
+		<execute AntTarget="ScheduledExecutorPeriodicExample" />
+	</target>
+	
+</project>

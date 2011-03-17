@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!---
+DIN A0 = 841 mm x 1189 mm
+DIN A1 = 594 mm x 0841 mm
+DIN A2 = 420 mm x 0594 mm
+DIN A3 = 297 mm x 0420 mm
+DIN A4 = 210 mm x 0297 mm 
+DIN A5 = 148 mm x 0210 mm
+DIN A6 = 105 mm x 0148 mm
+DIN A7 = 074 mm x 0105 mm
+DIN A8 = 052 mm x 0074 mm
+--->
+<paperSizes>
+    <paperSize name="A5" width="148" height="210" /> 
+    <paperSizs name="A4" width="210" height="297" />
+    <paperSize name="A3" width="297" height="420" />
+    
+    <paperSize name="A5 quer" width="210" height="148" />
+    <paperSizs name="A4 quer" width="297" height="210" />
+    <paperSizs name="A3 quer" width="420" height="297" />
+</paperSizes>

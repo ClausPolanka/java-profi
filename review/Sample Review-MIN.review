@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Review id="Sample Review">
+  <ReviewIssue id="GE7ON5I2">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-09-18 :: 01:30:32:474 MESZ</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2011-01-30 :: 18:00:20:853 MEZ</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>MIN</ReviewerId>
+    <AssignedTo></AssignedTo>
+    <File line="22">src/ch15_codereviews/DepartureLineTimeComparator.java</File>
+    <Type>item.type.label.programLogic</Type>
+    <Severity>item.severity.label.major</Severity>
+    <Summary>Ergebnis von timeComparator wird nicht ausgewertet</Summary>
+    <Description>Im DepartureLineTimeComparator wird lediglich das Ergebnis des lineComparator ausgewertet.
+Der timeComparator wird zwar verwendet, aber das Ergebnis wird nicht zurückgegeben.</Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+  <ReviewIssue id="GJK741Y5">
+    <ReviewIssueMeta>
+      <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2011-01-30 :: 17:59:19:901 MEZ</CreationDate>
+      <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2011-01-30 :: 17:59:19:966 MEZ</LastModificationDate>
+    </ReviewIssueMeta>
+    <ReviewerId>MIN</ReviewerId>
+    <AssignedTo></AssignedTo>
+    <File>.jupiter</File>
+    <Type>item.label.unset</Type>
+    <Severity>item.label.unset</Severity>
+    <Summary></Summary>
+    <Description></Description>
+    <Annotation></Annotation>
+    <Revision></Revision>
+    <Resolution>item.label.unset</Resolution>
+    <Status>item.status.label.open</Status>
+  </ReviewIssue>
+</Review>

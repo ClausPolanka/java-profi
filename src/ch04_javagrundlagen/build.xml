@@ -1,0 +1,266 @@
+<project name="JavaGrundlagen" default="compile" basedir="../..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="modern" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+		
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES -->
+	<target name="compile">
+
+		<echo message="compiling ${source.dir}" />
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch04_javagrundlagen.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="executeWithAssertions">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch04_javagrundlagen.@{AntTarget}" fork="true">
+				<jvmarg value="-ea" />
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>
+	
+	<!-- 4.1.1 -->
+	<target name="ToStringExample" depends="compile">
+		<execute AntTarget="ToStringExample" />
+	</target>
+
+	<target name="PersonExampleToString" depends="compile">
+		<execute AntTarget="PersonExampleToString" />
+	</target>
+			
+	<target name="ArraysToStringExample" depends="compile">
+		<execute AntTarget="ArraysToStringExample" />
+	</target>	
+
+	<!-- 4.1.2 -->
+	<target name="SpielkarteExample" depends="compile">
+		<execute AntTarget="SpielkarteExample" />
+	</target>	
+			
+	<target name="SpielkarteWithEqualsExample" depends="compile">
+		<execute AntTarget="SpielkarteWithEqualsExample" />
+	</target>	
+	
+	<target name="FloatUngenauigkeit" depends="compile">
+		<execute AntTarget="FloatUngenauigkeit" />
+	</target>
+		
+	<target name="EqualsSymmetrie" depends="compile">
+		<execute AntTarget="EqualsSymmetrie" />
+	</target>	
+
+	
+	<!-- 4.2 -->
+	<target name="MinValueTest" depends="compile">
+		<execute AntTarget="MinValueTest" />
+	</target>	
+	
+	<target name="ParseNumber" depends="compile">
+		<execute AntTarget="ParseNumber" />
+	</target>		
+	
+	<target name="AutoBoxingCacheExample" depends="compile">
+		<execute AntTarget="AutoBoxingCacheExample" />
+	</target>	
+
+	<target name="AutoBoxingUnboxingProblem" depends="compile">
+		<execute AntTarget="AutoBoxingUnboxingProblem" />
+	</target>
+	
+	<target name="AutoBoxingAndMethodSignatureExample" depends="compile">
+		<execute AntTarget="AutoBoxingAndMethodSignatureExample" />
+	</target>
+
+	<target name="NumberOutputExample" depends="compile">
+		<execute AntTarget="NumberOutputExample" />
+	</target>
+	
+	<target name="NumberOutputExampleSpecial" depends="compile">
+		<execute AntTarget="NumberOutputExampleSpecial" />
+	</target>	
+			
+	<target name="ExtractByteExample" depends="compile">
+		<execute AntTarget="ExtractByteExample" />
+	</target>		
+
+
+	<!-- 4.3.1 -->
+	<target name="StringCompareLiteralExample" depends="compile">
+		<execute AntTarget="StringCompareLiteralExample" />
+	</target>	
+
+	<target name="StringImmutabiltyExample" depends="compile">
+		<execute AntTarget="StringImmutabiltyExample" />
+	</target>	
+	
+	<!-- 4.3.3 -->	
+	<target name="StringFormatExample" depends="compile">
+		<execute AntTarget="StringFormatExample" />
+	</target>	
+	
+	<target name="StringFormatVarArgsExample" depends="compile">
+		<execute AntTarget="StringFormatVarArgsExample" />
+	</target>	
+
+	<!-- 4.3.4 -->
+	<target name="StringTokenizerVersionExtractExample" depends="compile">
+		<execute AntTarget="StringTokenizerVersionExtractExample" />
+	</target>	
+	
+	<!-- 4.3.5 -->	
+	<target name="RegExExample" depends="compile">
+		<execute AntTarget="RegExExample" />
+	</target>	
+	
+	<target name="RegExExampleImprovedPrint" depends="compile">
+		<execute AntTarget="RegExExampleImprovedPrint" />
+	</target>	
+
+	<target name="RegExExampleVarianten" depends="compile">
+		<execute AntTarget="RegExExampleVarianten" />
+	</target>	
+	
+	<target name="RegExExampleRanges" depends="compile">
+		<execute AntTarget="RegExExampleRanges" />
+	</target>	
+
+	<target name="RegExExampleRanges2" depends="compile">
+		<execute AntTarget="RegExExampleRanges2" />
+	</target>	
+
+	<target name="RegExExampleNewsTicker" depends="compile">
+		<execute AntTarget="RegExExampleNewsTicker" />
+	</target>	
+	
+	<target name="StringSplitExample" depends="compile">
+		<execute AntTarget="StringSplitExample" />
+	</target>
+	
+	
+	<!-- 4.4.1 -->	
+	<target name="DateAPIProblems1" depends="compile">
+		<execute AntTarget="DateAPIProblems1" />
+	</target>
+		
+	<target name="DateAPIProblems2" depends="compile">
+		<execute AntTarget="DateAPIProblems2" />
+	</target>
+	
+	<target name="DateAPIProblems3" depends="compile">
+		<execute AntTarget="DateAPIProblems3" />
+	</target>	
+	
+	<!-- 4.4.2 -->
+	<target name="DateCalculationExample" depends="compile">
+		<execute AntTarget="DateCalculationExample" />
+	</target>	
+	
+	<!-- 4.4.3 -->
+	<target name="PersonDateToStringExample" depends="compile">
+		<execute AntTarget="PersonDateToStringExample" />
+	</target>	
+	
+	<target name="CalendarCalculationExample" depends="compile">
+		<execute AntTarget="CalendarCalculationExample" />
+	</target>	
+	
+	
+	<!-- 4.5.3 -->
+	<target name="CalculatorInnerClassWithIFExample" depends="compile">
+		<execute AntTarget="CalculatorInnerClassWithIFExample" />
+	</target>	
+	
+	
+	<!-- 4.6.1 -->	
+	<target name="PathExample" depends="compile">
+		<execute AntTarget="PathExample" />
+	</target>
+
+	<target name="FileFilterExample" depends="compile">
+		<execute AntTarget="FileFilterExample" />
+	</target>
+	
+	<target name="DirectoryObserver" depends="compile">
+		<execute AntTarget="DirectoryObserver" />
+	</target>
+	
+	<!-- 4.6.2 -->	
+	<target name="StringEncodings" depends="compile">
+		<execute AntTarget="StringEncodings" />
+	</target>
+		
+	<!-- 4.6.3 -->	
+	<target name="PersonStreamFileStream" depends="compile">
+		<execute AntTarget="PersonStreamFileStream" />
+	</target>
+	
+	<!-- 4.6.4 -->
+	<target name="EchoServer" depends="compile">
+		<execute AntTarget="network.EchoServer" />
+	</target>
+	
+	<target name="EchoClient" depends="compile">
+		<execute AntTarget="network.EchoClient" />
+	</target>
+			
+	
+	<!-- 4.7 -->
+	<target name="AssertExample" depends="compile">
+		<execute AntTarget="AssertExample" />
+	</target>
+	
+	<target name="AssertExampleWithMethods" depends="compile">
+		<executeWithAssertions AntTarget="AssertExampleWithMethods" />
+	</target>	
+	
+</project>

@@ -1,0 +1,189 @@
+<project name="JavaCollections" default="compile" basedir="../..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="modern" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES -->
+	<target name="compile">
+
+		<echo message="compiling ${source.dir}" />
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch05_collections.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>	
+	
+	
+	<target name="IterationExample" depends="compile">
+		<execute AntTarget="IterationExample" />
+	</target>
+		
+	<target name="IteratorCollectionRemoveExample" depends="compile">
+		<execute AntTarget="IteratorCollectionRemoveExample" />
+	</target>
+			
+	<target name="IteratorCorrectRemoveExample" depends="compile">
+		<execute AntTarget="IteratorCorrectRemoveExample" />
+	</target>
+	
+	<target name="IteratorDoubleRemoveExample" depends="compile">
+		<execute AntTarget="IteratorDoubleRemoveExample" />
+	</target>	
+	
+		
+	<target name="DirectoryCheckerReportingChanges" depends="compile">
+		<execute AntTarget="DirectoryCheckerReportingChanges" />
+	</target>	
+	
+
+	<target name="SpielkarteInHashSet" depends="compile">
+		<execute AntTarget="SpielkarteInHashSet" />
+	</target>	
+
+	<target name="PersonComparable" depends="compile">
+		<execute AntTarget="Person" />
+	</target>		
+	
+	<target name="PersonUsingComparableForEquals" depends="compile">
+		<execute AntTarget="PersonUsingComparableForEquals" />
+	</target>	
+	
+	<target name="SpielkarteWithEqualsAndHashCode" depends="compile">
+		<execute AntTarget="SpielkarteWithEqualsAndHashCode" />
+	</target>
+
+
+	<target name="LawOfBig3Example" depends="compile">
+		<execute AntTarget="LawOfBig3Example" />
+	</target>	
+
+	<target name="LawOfBig3Example2" depends="compile">
+		<execute AntTarget="LawOfBig3Example2" />
+	</target>	
+
+	<target name="LawOfBig3Example3" depends="compile">
+		<execute AntTarget="LawOfBig3Example3" />
+	</target>	
+	
+	
+	<target name="HashSetIterationExample" depends="compile">
+		<execute AntTarget="HashSetIterationExample" />
+	</target>	
+
+	<target name="HashSetIterationExample2" depends="compile">
+		<execute AntTarget="HashSetIterationExample2" />
+	</target>	
+	
+	<target name="NameToImageMapExample" depends="compile">
+		<execute AntTarget="NameToImageMapExample" />
+	</target>
+
+	<target name="FixedSizeLinkedHashMapExample" depends="compile">
+		<execute AntTarget="FixedSizeLinkedHashMapExample" />
+	</target>
+
+	<target name="LruLinkedHashMapExample" depends="compile">
+		<execute AntTarget="LruLinkedHashMapExample" />
+	</target>
+
+	<target name="TreeMapExample" depends="compile">
+		<execute AntTarget="TreeMapExample" />
+	</target>
+		
+	<target name="UpperCaseNameMap" depends="compile">
+		<execute AntTarget="UpperCaseNameMap" />
+	</target>
+	
+
+	<target name="BinarySearchExample" depends="compile">
+		<execute AntTarget="BinarySearchExample" />
+	</target>
+
+
+	<target name="PersonUniversalComparatorExample" depends="compile">
+		<execute AntTarget="PersonUniversalComparatorExample" />
+	</target>
+
+	<target name="PersonReverseComparatorExample" depends="compile">
+		<execute AntTarget="PersonReverseComparatorExample" />
+	</target>
+	
+
+	<target name="SimpleFilterExample" depends="compile">
+		<execute AntTarget="filtering.SimpleFilterExample" />
+	</target>
+	
+	<target name="SimpleFilterExample2" depends="compile">
+		<execute AntTarget="filtering.SimpleFilterExample2" />
+	</target>
+		
+	<target name="FilterExample" depends="compile">
+		<execute AntTarget="filtering.FilterExample" />
+	</target>		
+	
+	
+	<target name="CheckedCollectionsExample" depends="compile">
+		<execute AntTarget="CheckedCollectionsExample" />
+	</target>
+	
+	<target name="AlgorithmsExample" depends="compile">
+		<execute AntTarget="AlgorithmsExample" />
+	</target>
+
+	<target name="AlgorithmsExampleMinMax" depends="compile">
+		<execute AntTarget="AlgorithmsExampleMinMax" />
+	</target>
+		
+	<target name="AlgorithmsExampleShuffleReplaceAll" depends="compile">
+		<execute AntTarget="AlgorithmsExampleShuffleReplaceAll" />
+	</target>		
+	
+
+	<target name="BesserIteratorAlsArray" depends="compile">
+		<execute AntTarget="BesserIteratorAlsArray" />
+	</target>
+
+	
+	<target name="ArrayCompareExample" depends="compile">
+		<execute AntTarget="ArrayCompareExample" />
+	</target>
+	
+	<target name="ArrayCloneExample" depends="compile">
+		<execute AntTarget="ArrayCloneExample" />
+	</target>
+	
+</project>

@@ -1,0 +1,9 @@
+Testsuite: ch06_applikationsbausteine.StringToListUtilsTest
+Tests run: 3, Failures: 1, Errors: 0, Time elapsed: 0,131 sec
+
+Testcase: testMissingLineEnding(ch06_applikationsbausteine.StringToListUtilsTest):	FAILED
+NOT terminated with '\n' expected:<[Test]> but was:<[]>
+junit.framework.AssertionFailedError: NOT terminated with '\n' expected:<[Test]> but was:<[]>
+	at ch06_applikationsbausteine.StringToListUtilsTest.testMissingLineEnding(StringToListUtilsTest.java:39)
+
+

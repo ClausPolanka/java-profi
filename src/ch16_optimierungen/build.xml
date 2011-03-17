@@ -1,0 +1,117 @@
+<project name="Optimierungen" default="compile" basedir="../..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="modern" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES -->
+	<target name="compile">
+
+		<echo message="compiling ${source.dir}" />
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch16_optimierungen.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>	
+	
+	
+	
+	<!-- 16.1.3 -->
+	<target name="PeepholeOptimizationExample" depends="compile">
+		<execute AntTarget="PeepholeOptimizationExample" />
+	</target>
+	
+	<!-- 16.2 -->
+	<target name="ListPerformanceTest" depends="compile">
+		<execute AntTarget="ListPerformanceTest" />
+	</target>
+	
+	<!-- 16.4 -->	
+	<target name="ListOptimizationExample" depends="compile">
+		<execute AntTarget="ListOptimizationExample" />
+	</target>
+
+	<target name="ListOptimizationExampleIOImproved" depends="compile">
+		<execute AntTarget="ListOptimizationExampleIOImproved" />
+	</target>
+
+	<target name="ListOptimizationExampleIOImproved2" depends="compile">
+		<execute AntTarget="ListOptimizationExampleIOImproved2" />
+	</target>	
+
+	<target name="ListOptimizationExampleDSImproved" depends="compile">
+		<execute AntTarget="ListOptimizationExampleIOAndDSImproved" />
+	</target>		
+	
+	<target name="ListOptimizationExampleOneMillion" depends="compile">
+		<execute AntTarget="ListOptimizationExampleOneMillion" />
+	</target>		
+
+		
+	<!-- 16.6.2 -->
+	<target name="LruListCacheExample" depends="compile">
+		<execute AntTarget="LruListCacheExample" />
+	</target>
+	
+	<target name="BooleanPoolingOptimization" depends="compile">
+		<execute AntTarget="BooleanPoolingOptimization" />
+	</target>
+	
+	<!-- 16.6.3 -->
+	<target name="StringBenchmark" depends="compile">
+		<execute AntTarget="StringBenchmark" />
+	</target>
+
+	<!-- 16.6.4 -->
+	<target name="VOSerializationSizeExample" depends="compile">
+		<execute AntTarget="VOSerializationSizeExample" />
+	</target>
+
+	<!-- 16.7.2 -->
+	<target name="SinCalculationLookUpOptimizationExample" depends="compile">
+		<execute AntTarget="SinCalculationLookUpOptimizationExample" />
+	</target>	
+		
+	<target name="MathExpExample" depends="compile">
+		<execute AntTarget="MathExpExample" />
+	</target>		
+	
+	<!-- 16.7.3 -->
+	<target name="OptimizedEqualsExample" depends="compile">
+		<execute AntTarget="OptimizedEqualsExample" />
+	</target>	
+
+</project>

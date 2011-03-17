@@ -1,0 +1,7 @@
+Testsuite: ch14_unittests.services.TaskUtilsV2Test
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 0,167 sec
+
+------------- Standard Output ---------------
+WARN   compareTaskData, new task is different from existing (wrong length).
+WARN   compareTaskData, different content (not equal).
+------------- ---------------- ---------------

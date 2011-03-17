@@ -1,0 +1,104 @@
+<project name="Entwurfsmuster" default="compile" basedir="../..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="modern" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES -->
+	<target name="compile">
+
+		<echo message="compiling ${source.dir}" />
+        <mkdir dir="${build.dir}" />
+		
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch12_entwurfsmuster.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>	
+	
+	
+	<!-- Erbauer-Muster -->
+	<target name="BuilderExample" depends="compile">
+		<execute AntTarget="BuilderExample" />
+	</target>
+
+	
+	<!-- Prototyp-Muster -->
+	<target name="PrototypeExample" depends="compile">
+		<execute AntTarget="PrototypeExample" />
+	</target>
+
+	
+	<!-- Kompositum-Muster -->
+	<target name="KompositumExample" depends="compile">
+		<execute AntTarget="KompositumExample" />
+	</target>
+	
+	
+	<!-- Schablonenmethode-Muster -->
+	<target name="TileImageDrawingComponent" depends="compile">
+		<execute AntTarget="TileImageDrawingComponent" />
+	</target>
+
+	<target name="ImageDrawingComponent" depends="compile">
+		<execute AntTarget="ImageDrawingComponent" />
+	</target>
+	
+
+	<!-- Strategie-Muster -->
+	<target name="StrategyFilterBaseExample" depends="compile">
+		<execute AntTarget="StrategyFilterBaseExample" />
+	</target>
+	
+	<target name="StrategyFilterExample" depends="compile">
+		<execute AntTarget="StrategyFilterExample" />
+	</target>
+	
+	<target name="StrategyFilterExample2" depends="compile">
+		<execute AntTarget="StrategyFilterExample2" />
+	</target>
+
+
+	<!-- Befehl-Muster -->
+	<target name="SimpleCommandExample" depends="compile">
+		<execute AntTarget="SimpleCommandExample" />
+	</target>
+
+	<target name="CommandExecutor" depends="compile">
+		<execute AntTarget="CommandExecutor" />
+	</target>
+	
+</project>

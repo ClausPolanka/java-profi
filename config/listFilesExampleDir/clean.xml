@@ -1,0 +1,8 @@
+<!-- CLEANING DIECTORIES -->
+<target name="clean">
+	<echo message="deleting build dir: ${build.dir}"/>
+	<delete dir="${build.dir}" />		
+
+	<echo message="deleting release dir: ${release.dir}"/>
+	<delete dir="${release.dir}" />		
+</target>	

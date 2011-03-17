@@ -1,0 +1,20 @@
+Testsuite: ch14_unittests.HamcreastExampleTest
+Tests run: 2, Failures: 2, Errors: 0, Time elapsed: 0,067 sec
+
+Testcase: testAgeJUnit(ch14_unittests.HamcreastExampleTest):	FAILED
+age
+junit.framework.AssertionFailedError: age
+	at ch14_unittests.HamcreastExampleTest.testAgeJUnit(HamcreastExampleTest.java:21)
+
+
+Testcase: testAgeHamcreat(ch14_unittests.HamcreastExampleTest):	FAILED
+age
+Expected: (a value greater than <30> and not even number)
+     but: not even number was <38>
+junit.framework.AssertionFailedError: age
+Expected: (a value greater than <30> and not even number)
+     but: not even number was <38>
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at ch14_unittests.HamcreastExampleTest.testAgeHamcreat(HamcreastExampleTest.java:27)
+
+

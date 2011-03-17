@@ -1,0 +1,15 @@
+Testsuite: ch14_unittests.ControllerV3Test
+Tests run: 5, Failures: 2, Errors: 0, Time elapsed: 0,169 sec
+
+Testcase: testCalcStateRealHexValues3F(ch14_unittests.ControllerV3Test):	FAILED
+expected:<63> but was:<70>
+junit.framework.AssertionFailedError: expected:<63> but was:<70>
+	at ch14_unittests.ControllerV3Test.testCalcStateRealHexValues3F(ControllerV3Test.java:32)
+
+
+Testcase: testCalcStateRealHexValuesAE(ch14_unittests.ControllerV3Test):	FAILED
+expected:<174> but was:<293>
+junit.framework.AssertionFailedError: expected:<174> but was:<293>
+	at ch14_unittests.ControllerV3Test.testCalcStateRealHexValuesAE(ControllerV3Test.java:37)
+
+

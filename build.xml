@@ -1,0 +1,271 @@
+<project name="Example" default="release" basedir=".">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="javac1.6" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="testsource.dir" value="test" />
+	<property name="build.dir" value="bin" />
+	<property name="release.dir" value="release" />
+	<property name="lib.dir" value="lib" />
+    <property name="report.dir" value="generated-reports" />      
+
+	<!-- SET APPLICATION NAME -->
+	<property name="appname" value="AntTestProject" />
+	<property name="mainclass" value="ui.AntTestProject" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+	
+	<!-- PREPARING DESTINATION DIRECTORIES -->
+	<target name="prepare">
+		
+		<echo message="creating build dir: ${build.dir}"/>
+		<mkdir dir="${build.dir}" />
+			
+		<echo message="creating release dir: ${release.dir}"/>
+		<mkdir dir="${release.dir}" />
+		
+	</target>
+
+    <!-- CLEANING DIRECTORIES -->
+	<target name="clean">
+		
+		<echo message="deleting build dir: ${build.dir}"/>
+		<delete dir="${build.dir}" />		
+		
+		<echo message="deleting release dir: ${release.dir}"/>
+		<delete dir="${release.dir}" />
+		
+	</target>	
+	
+	<!-- COMPILE ALL SOURCES (AND TESTS) -->
+	<target name="compile" depends="prepare">
+		
+		<echo message="compile" />
+		<antcall target="-compileSrc" />
+
+		<available file="${testsource.dir}" type="dir" property="testsource.dir.present" />
+		<antcall target="-compileTests" />
+
+	</target>
+
+	<!-- COMPILE SRC -->
+	<target name="-compileSrc">
+
+		<echo message="compiling ${source.dir}" />
+
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" debug="true" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- COMPILE TESTS -->
+	<target name="-compileTests" if="testsource.dir.present">
+
+		<echo message="compiling ${testsource.dir}" />
+		<javac srcdir="${testsource.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" debug="true" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+
+	</target>
+	
+    <!-- EXECUTE TESTS -->
+    <target name="executeTests" depends="compile" if="testsource.dir.present">
+
+        <echo message="preparing junit-reports dir: ${report.dir}/junit" />
+        <delete dir="${report.dir}/junit" />
+        <mkdir dir="${report.dir}/junit" />
+    	
+        <junit printsummary="on" fork="true" haltonfailure="false" failureproperty="tests.failed" filtertrace="yes" showoutput="true">
+
+            <classpath>
+                <pathelement location="${build.dir}" />
+                <path refid="project.classpath" />
+            </classpath>
+
+            <formatter type="brief" usefile="true" />
+    		<formatter type="xml" usefile="true" />
+    	
+            <batchtest todir="${report.dir}/junit">
+                <fileset dir="${testsource.dir}">
+                    <include name="**/*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+
+    	<junitreport todir="${report.dir}/junit">
+    	  	<fileset dir="${report.dir}/junit">
+    	    	<include name="TEST-*.xml"/>
+    	  	</fileset>
+    	  	<report format="frames" todir="${report.dir}/junit"/>
+    	</junitreport>
+    	
+    	<!---
+        <fail if="tests.failed">
+        </fail>
+        -->
+
+    </target>
+		
+	
+	<!-- Cobertura -->	
+	<taskdef classpath="cobertura.jar" resource="tasks.properties" />	
+		
+    <!-- INSTRUMENTATION -->
+	<target name="instrument" depends="compile"> 
+
+    	<delete file="cobertura.ser" />	
+
+		<echo message="deleting classes dir: cobertura/instrumented-classes"/>
+		<delete dir="cobertura/instrumented-classes" />	
+		<mkdir dir="cobertura/instrumented-classes" />
+		
+		<cobertura-instrument todir="cobertura/instrumented-classes">        
+		    <fileset dir="${build.dir}/ch14_unittests">
+		    	<include name="**/*.class" />
+		    	<exclude name="**/*Test.class" />
+		    </fileset>
+		</cobertura-instrument>
+
+	</target>	
+	
+    <!-- EXECUTE COVERAGE TEST -->
+    <target name="coverage-test" depends="instrument">
+
+        <echo message="running unit-tests for cobertura" />       
+           
+        <echo message="preparing junit-reports dir: ${report.dir}/junit" />
+        <delete dir="${report.dir}/junit" />
+        <mkdir dir="${report.dir}/junit" />
+                          		
+        <junit printsummary="on" fork="true" 
+	             haltonfailure="false" failureproperty="tests.failed" filtertrace="yes" showoutput="true">
+
+            <classpath>
+            	<pathelement location="cobertura/instrumented-classes"/>
+            	<pathelement location="${build.dir}" />
+                <path refid="project.classpath" />
+            </classpath>
+   	
+            <formatter type="brief" usefile="true" />
+    		<formatter type="xml" usefile="true" />
+        	
+            <batchtest fork="true" todir="${report.dir}/junit">
+                <fileset dir="${testsource.dir}">
+                    <include name="**/*Test.java" />
+                    <exclude name="**/AllTests.java" />
+                </fileset>
+            </batchtest>
+        	
+        </junit>
+    	
+    </target>
+	
+    <!-- COVERAGE REPORT -->
+	<target name="coverage-report" depends="coverage-test">
+		
+		<echo message="deleting report dir: ${report.dir}/cobertura"/>
+		<delete dir="${report.dir}/cobertura" />	
+        <mkdir dir="${report.dir}/cobertura" />
+		
+		<cobertura-report destdir="${report.dir}/cobertura">
+			<fileset dir="${source.dir}">
+		        <include name="**/*.java" />
+		    </fileset>
+		    <fileset dir="${testsource.dir}">
+		        <include name="**/*.java" />
+		    </fileset>	
+		</cobertura-report>
+		
+	</target>
+	
+
+	
+<!-- CHECK ALL SOURCES -->
+<!-- Lesbarkeit -->
+<property name="cs-report.dir" value="${report.dir}/checkstyle" />      
+<property name="cs-lib.dir" value="${lib.dir}/checkstyle-5.0" />     
+<property name="byName" value="${cs-lib.dir}/contrib/checkstyle-noframes.xsl" />      
+<property name="byErrorCount" value="${cs-lib.dir}/contrib/checkstyle-noframes-sorted.xsl" />   
+	
+<taskdef resource="checkstyletask.properties"
+         classpath="${cs-lib.dir}/checkstyle-all-5.0.jar"/> 
+	
+<target name="checkstyle" depends="prepare">
+    
+	<echo message="checking"/>
+   
+    <echo message="preparing checkstyle-reports dir: ${cs-report.dir}" />
+    <delete dir="${cs-report.dir}" />
+    <mkdir dir="${cs-report.dir}" />           
+               
+    <checkstyle config="${cs-lib.dir}/sun_checks.xml" failOnViolation="false">
+        <fileset dir="${source.dir}" includes="**/*.java" />
+        <formatter type="plain" toFile="${cs-report.dir}/checkstyle_report.txt "/>
+        <formatter type="xml" toFile="${cs-report.dir}/checkstyle_report.xml" />
+    </checkstyle>
+   
+    <xslt in="${cs-report.dir}/checkstyle_report.xml" out="${cs-report.dir}/checkstyle_report_sorted_by_name.html" style="${byName}"/>
+    <xslt in="${cs-report.dir}/checkstyle_report.xml" out="${cs-report.dir}/checkstyle_report_sorted_by_errorcount.html" style="${byErrorCount}"/>
+ 
+</target>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<target name="start" depends="compile">
+
+		<echo message="starting application ${appname} in dir ${basedir}" />
+
+		<java classname="${mainclass}" fork="true">
+			<classpath>
+				<pathelement location="." />
+				<pathelement location="${build.dir}" />
+				<path refid="project.classpath" />
+			</classpath>
+		</java>
+
+	</target>
+	
+	<!-- Erzeugen eines neuen Sofwarereleases -->
+	<target name="release" depends="executeTests">
+
+		<!-- create jar file  -->
+		<jar destfile="${release.dir}/${appname}.jar">
+
+			<fileset dir="${build.dir}" excludes="**/Test*.class, **/*Test.class" />
+
+			<manifest>
+				<attribute name="Main-Class" value="${mainclass}" />
+			</manifest>
+
+		</jar>
+
+		<!--- copy lib dir to release lib dir -->
+		<copy todir="${release.dir}/${lib.dir}">
+			<fileset dir="${lib.dir}" />
+		</copy>
+
+		<!--- copy properties and xml-files to release dir -->
+		<copy todir="${release.dir}">
+			<fileset dir="${basedir}" includes="*.properties, *.xml" excludes="build.xml, start.xml" />
+		</copy>
+
+		<!-- Trick: kopiere 'start.xml' als 'build.xml' in den -->
+		<!-- release-Ordner, sorgt dafuer, dass lediglich das -->
+		<!-- target 'release.start' existiert -->
+		<copy file="start.xml" tofile="${release.dir}/build.xml" />
+
+		<echo message="release ${appname}.jar created" />
+
+	</target>	
+	
+</project>

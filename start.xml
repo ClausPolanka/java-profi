@@ -1,0 +1,29 @@
+<project name="Example" default="start" basedir=".">
+
+	<property name="lib.dir" value="lib" />
+
+	<!-- SET APP-NAME -->
+	<property name="appname" value="AntTestProject" />
+	<property name="mainclass" value="ui.AntTestProject" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- STARTING NEW RELEASE -->
+	<target name="start">
+
+		<echo message="starting application ${appname}.jar" />
+		<echo message="in dir ${basedir}" />
+
+		<java fork="true" classname="${mainclass}">
+			<classpath>
+				<path refid="project.classpath" />
+				<path location="${appname}.jar" />
+			</classpath>
+		</java>
+
+	</target>
+
+</project>

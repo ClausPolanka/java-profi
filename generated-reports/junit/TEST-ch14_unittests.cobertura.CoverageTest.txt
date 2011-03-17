@@ -1,0 +1,21 @@
+Testsuite: ch14_unittests.cobertura.CoverageTest
+Tests run: 5, Failures: 2, Errors: 1, Time elapsed: 0,14 sec
+
+Testcase: testDivideByZeroJUnit3(ch14_unittests.cobertura.CoverageTest):	FAILED
+
+junit.framework.AssertionFailedError: 
+	at ch14_unittests.cobertura.CoverageTest.testDivideByZeroJUnit3(CoverageTest.java:36)
+
+
+Testcase: testDivideByZeroJUnit4(ch14_unittests.cobertura.CoverageTest):	FAILED
+Expected exception: java.lang.ArithmeticException
+junit.framework.AssertionFailedError: Expected exception: java.lang.ArithmeticException
+
+
+Testcase: testCoverage100ButNPE2(ch14_unittests.cobertura.CoverageTest):	Caused an ERROR
+null
+java.lang.NullPointerException
+	at ch14_unittests.cobertura.Coverage.coverage100ButNPE(Coverage.java:38)
+	at ch14_unittests.cobertura.CoverageTest.testCoverage100ButNPE2(CoverageTest.java:59)
+
+

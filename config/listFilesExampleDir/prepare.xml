@@ -1,0 +1,11 @@
+<!-- PREPARING DESTINATION DIECTORIES -->
+<target name="prepareRelease">
+	<echo message="creating release dir ${release.dir}"/>
+	<mkdir dir="${release.dir}" />
+</target>
+
+
+<target name="prepareBuild">
+	<echo message="creating build dir: ${build.dir}"/>
+	<mkdir dir="${build.dir}" />
+</target>

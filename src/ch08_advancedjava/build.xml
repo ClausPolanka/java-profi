@@ -1,0 +1,226 @@
+<project name="AdvancedJava" default="compile" basedir="../..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="modern" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+	
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES -->
+	<target name="compile">
+
+		<echo message="compiling ${source.dir}" />
+        <mkdir dir="${build.dir}" />
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch08_advancedjava.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>
+	
+	<!-- Starte die Applikation aus den compilierten Klassen mit Classpath auf config -->
+	<macrodef name="executeSpecial">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch08_advancedjava.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<!-- Wichtig für Zugriff auf .properties im config-Order parallel zu src-->
+					<pathelement location="config" />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>
+
+	
+	<!-- 8.1.1 -->
+	<target name="ReflectionArrayClassesExample" depends="compile">
+		<execute anttarget="reflection.ReflectionArrayClassesExample"/>
+	</target>
+	
+	<target name="ReflectionCallEqualsExample" depends="compile">
+		<execute anttarget="reflection.ReflectionCallEqualsExample"/>
+	</target>
+	
+	<!-- 8.1.2 -->
+	<target name="InspectionExample" depends="compile">
+		<execute anttarget="reflection.InspectionExample"/>
+	</target>
+	
+	<!-- 8.1.3 -->
+	<target name="ReflectionCtorExample" depends="compile">
+		<execute anttarget="reflection.ReflectionCtorExample"/>
+	</target>
+	
+	<target name="AttributeAcccessExample" depends="compile">
+		<execute anttarget="reflection.AttributeAcccessExample"/>
+	</target>	
+	
+	
+	<!-- 8.2.1 -->
+	<target name="SerializationExample" depends="compile">
+		<execute anttarget="serializable.SerializationExample"/>
+	</target>
+	
+	<target name="DeserializationExample" depends="compile">
+		<execute anttarget="serializable.DeserializationExample"/>
+	</target>
+	
+	<target name="SerializationOptimizationExample" depends="compile">
+		<execute anttarget="serializable.SerializationOptimizationExample"/>
+	</target>	
+		
+	<target name="SerializationOptimizationExample2" depends="compile">
+		<execute anttarget="serializable.SerializationOptimizationExample2"/>
+	</target>	
+	
+	<target name="SerializationOptimizationExample3" depends="compile">
+		<execute anttarget="serializable.SerializationOptimizationExample3"/>
+	</target>		
+	
+	<target name="ExternalizableExample" depends="compile">
+		<execute anttarget="serializable.ExternalizableExample"/>
+	</target>	
+	
+	
+	<!-- 8.3.1 -->	
+	<target name="BaseCloneableExample" depends="compile">
+		<execute anttarget="cloneable.BaseCloneableExample"/>
+	</target>
+
+	<target name="BaseCloneable2Example" depends="compile">
+		<execute anttarget="cloneable.BaseCloneable2Example"/>
+	</target>
+		
+	<target name="DerivedCloneableExample" depends="compile">
+		<execute anttarget="cloneable.DerivedCloneableExample"/>
+	</target>
+		
+	
+	<!-- 8.4.2 -->
+	<target name="LocaleExample" depends="compile">
+		<execute anttarget="i18n.basics.LocaleExample"/>
+	</target>
+
+	<target name="AvailableLocalesExample" depends="compile">
+		<execute anttarget="i18n.basics.AvailableLocalesExample"/>
+	</target>
+	
+	<!-- 8.4.3 -->
+	<target name="PropertyResourceBundleExample" depends="compile">
+		<execute AntTarget="i18n.basics.PropertyResourceBundleExample" />
+	</target>	
+	
+	<!-- 8.4.5 -->
+	<target name="NumberFormatExample" depends="compile">
+		<execute anttarget="i18n.basics.NumberFormatExample"/>
+	</target>
+		
+	<target name="NumberFormatParseExample" depends="compile">
+		<execute anttarget="i18n.basics.NumberFormatParseExample"/>
+	</target>
+
+	<!-- 8.4.6 -->
+	<target name="DateFormatExample" depends="compile">
+		<execute anttarget="i18n.basics.DateFormatExample"/>
+	</target>
+	
+	<target name="DateFormatParseExample" depends="compile">
+		<execute anttarget="i18n.basics.DateFormatParseExample"/>
+	</target>	
+	
+	<target name="DateFormatParseToStringExample" depends="compile">
+		<execute anttarget="i18n.basics.DateFormatParseToStringExample"/>
+	</target>	
+	
+	<!-- 8.4.7 -->
+	<target name="MessageFormatExample" depends="compile">
+		<execute anttarget="i18n.basics.MessageFormatExample"/>
+	</target>
+			
+	<target name="MessageFormatExample2" depends="compile">
+		<execute anttarget="i18n.basics.MessageFormatExample2"/>
+	</target>
+				
+	
+	<!-- 8.5.1 -->
+	<target name="MultipleDateFormatParsingExample1" depends="compile">
+		<execute AntTarget="i18n.MultipleDateFormatParsingExample1" />
+	</target>
+
+	<target name="MultipleDateFormatParsingExample2" depends="compile">
+		<execute AntTarget="i18n.MultipleDateFormatParsingExample2" />
+	</target>
+
+	<target name="MultipleDateFormatParsingExample3" depends="compile">
+		<execute AntTarget="i18n.MultipleDateFormatParsingExample3" />
+	</target>	
+	
+	<!-- 8.5.2 -->
+	<target name="ResourceManagerExample" depends="compile">
+		<executeSpecial AntTarget="i18n.ResourceManagerExample" />
+	</target>	
+
+	<target name="ResourceManagerV2Example" depends="compile">
+		<executeSpecial AntTarget="i18n.ResourceManagerV2Example" />
+	</target>	
+	
+	
+	<!-- 8.6.2 -->
+	<target name="AWTEdtExample" depends="compile">
+		<executeSpecial AntTarget="multithreading.AWTEdtExample" />
+	</target>	
+
+	<target name="AWTEdtExample1" depends="compile">
+		<executeSpecial AntTarget="multithreading.AWTEdtExample1" />
+	</target>	
+
+	<target name="AWTEdtExample2" depends="compile">
+		<executeSpecial AntTarget="multithreading.AWTEdtExample2" />
+	</target>	
+
+	<!-- 8.6.3 -->
+	<target name="SwingWorkerDemo" depends="compile">
+		<executeSpecial AntTarget="multithreading.SwingWorkerDemo" />
+	</target>	
+
+</project>

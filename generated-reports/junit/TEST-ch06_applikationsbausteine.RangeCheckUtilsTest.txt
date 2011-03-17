@@ -1,0 +1,3 @@
+Testsuite: ch06_applikationsbausteine.RangeCheckUtilsTest
+Tests run: 6, Failures: 0, Errors: 0, Time elapsed: 0,13 sec
+

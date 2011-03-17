@@ -1,0 +1,115 @@
+<project name="Arbeitsumgebung" default="compile" basedir="../..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="modern" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES (AND TESTS) -->
+	<target name="compile">
+		
+		<echo message="compile" />
+		<antcall target="-compileSrc" />
+
+		<available file="${testsource.dir}" type="dir" property="testsource.dir.present" />
+		<antcall target="-compileTests" />
+
+	</target>
+
+	<!-- COMPILE SRC -->
+	<target name="-compileSrc">
+
+		<echo message="compiling ${source.dir}" />
+
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" debug="true" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- COMPILE TESTS -->
+	<target name="-compileTests" if="testsource.dir.present">
+
+		<echo message="compiling ${testsource.dir}" />
+		<javac srcdir="${testsource.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" debug="true" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+
+	</target>
+
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch02_arbeitsumgebung.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>
+
+	<!-- Starte den Test aus den compilierten Klassen -->
+	<macrodef name="executeTest">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting test @{AntTarget} in dir ${basedir}" />
+			
+			<junit printsummary="yes" showoutput="true" fork="true">
+		
+				<test name="ch02_arbeitsumgebung.@{AntTarget}" />
+							
+				<formatter type="plain" usefile="false"/>
+						
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+
+			</junit>				
+			
+		</sequential>
+			
+	</macrodef>
+	
+
+	<target name="FirstTest" depends="compile">
+		<executeTest AntTarget="FirstTest" />
+	</target>
+
+	<target name="FirstTestWithJUnit4" depends="compile">
+		<executeTest AntTarget="FirstTestWithJUnit4" />
+	</target>
+
+	<target name="TestExample" depends="compile">
+		<executeTest AntTarget="TestExample" />
+	</target>
+
+</project>

@@ -1,0 +1,113 @@
+<project name="OODesign" default="compile" basedir="../..">
+
+	<!-- SET COMPILER AND JAVA SOURCE COMPATIBILITY -->
+	<property name="source" value="1.6" />
+	<property name="compiler" value="modern" />
+
+	<!-- SET SOURCE, BUILD AND RELEASE DIR -->
+	<property name="source.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+
+	<!-- SET CLASSPATH HERE -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- COMPILE ALL SOURCES -->
+	<target name="compile">
+
+		<echo message="compiling ${source.dir}" />
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="${source}" compiler="${compiler}" encoding="ISO-8859-1">
+			<classpath>
+				<path refid="project.classpath" />
+			</classpath>
+		</javac>
+				
+	</target>
+
+	<!-- Starte die Applikation aus den compilierten Klassen -->
+	<macrodef name="execute">
+		
+		<attribute name="AntTarget" />
+		
+		<sequential>
+
+			<echo message="starting application @{AntTarget} in dir ${basedir}" />
+
+			<java classname="ch03_oodesign.@{AntTarget}" fork="true">
+				<classpath>
+					<pathelement location="." />
+					<pathelement location="${build.dir}" />
+					<path refid="project.classpath" />
+				</classpath>
+			</java>
+			
+		</sequential>
+
+	</macrodef>	
+	
+	
+	<target name="CounterUsage" depends="compile">
+		<execute AntTarget="CounterUsage" />
+	</target>
+
+	<target name="CounterWithOverflowExample" depends="compile">
+		<execute AntTarget="CounterWithOverflowExample" />
+	</target>
+
+	<target name="FontAttributes" depends="compile">
+		<execute AntTarget="FontAttributes" />
+	</target>
+
+	<target name="FontAttributesEnum" depends="compile">
+		<execute AntTarget="FontAttributesEnum" />
+	</target>			
+
+	
+	<target name="ArrayStoreExceptionExample" depends="compile">
+		<execute AntTarget="varianz.ArrayStoreExceptionExample" />
+	</target>	
+	
+	<target name="CovariantReturnExample" depends="compile">
+		<execute AntTarget="varianz.CovariantReturnExample" />
+	</target>			
+
+	
+	<target name="OldStyleList" depends="compile">
+		<execute AntTarget="generics.OldStyleList" />
+	</target>	
+
+	<target name="NewStyleList" depends="compile">
+		<execute AntTarget="generics.NewStyleList" />
+	</target>	
+
+	<target name="GenericPairExample" depends="compile">
+		<execute AntTarget="generics.GenericPairExample" />
+	</target>		
+	
+	<target name="TypeErasureExample" depends="compile">
+		<execute AntTarget="generics.TypeErasureExample" />
+	</target>		
+
+	<target name="GenericsCreationExample" depends="compile">
+		<execute AntTarget="generics.GenericsCreationExample" />
+	</target>		
+
+	<target name="WrongGenericArrayCreation" depends="compile">
+		<execute AntTarget="generics.WrongGenericArrayCreation" />
+	</target>		
+
+	<target name="GenericArrayCreation" depends="compile">
+		<execute AntTarget="generics.GenericArrayCreation" />
+	</target>			
+
+	<target name="GenericsArrayPolymorphieExample" depends="compile">
+		<execute AntTarget="generics.GenericsArrayPolymorphieExample" />
+	</target>			
+
+	<target name="GenericsArrayPolymorphie2Example" depends="compile">
+		<execute AntTarget="generics.GenericsArrayPolymorphie2Example" />
+	</target>	
+		
+</project>
